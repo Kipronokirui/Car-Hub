@@ -18,7 +18,7 @@ const SearchManufacturer = ({ manufacturer, setManuFacturer }: SearchManuFacture
         );
   return (
       <div className='search-manufacturer'>
-          <Combobox>
+          <Combobox value={manufacturer} onChange={setManuFacturer}>
               <div className='relative w-full'>
                   <Combobox.Button className='absolute top-[14px]'>
                       <Image
@@ -50,7 +50,7 @@ const SearchManufacturer = ({ manufacturer, setManuFacturer }: SearchManuFacture
                                   value={query}
                                   className='search-manufacturer__option'
                               >
-                                
+                                Nothing Found
                               </Combobox.Option>
                           ) : (
                                   filteredManufacturers.map((item) => (
@@ -61,7 +61,27 @@ const SearchManufacturer = ({ manufacturer, setManuFacturer }: SearchManuFacture
                                           )}
                                           value={item}
                                       >
-                                          {item}
+                                          {/* {item} */}
+                                          {({ selected, active }) => (
+                                              <>
+                                                  <span
+                                                    className={`block truncate ${
+                                                        selected ? 'font-medium' : 'font-normal'
+                                                    }`}
+                                                    >
+                                                    {item}
+                                                    </span>
+                                                    {selected ? (
+                                                    <span
+                                                        className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+                                                        active ? 'text-white' : 'text-teal-600'
+                                                        }`}
+                                                    >
+                                                        
+                                                    </span>
+                                                    ) : null}
+                                              </>
+                                            )}
                                       </Combobox.Option>
                                   ))
                           )}
